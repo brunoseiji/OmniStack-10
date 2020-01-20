@@ -1,10 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './global.css';
 import './App.css';
 import './Sidebar.css';
+import './Main.css';
 
 function App() {
+	const [latitude, setLatitude] = useState('');
+	const [longitude, setLongitude] = useState('');
+
+	useEffect(() => {
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				const { latitude, longitude } = position.coords;
+
+				setLatitude(latitude);
+				setLongitude(longitude);
+			},
+			(err) => {
+				console.log(err);
+			},
+			{
+				timeout: 30000,
+			}
+		)
+	}, []);
+
   return (
     <div id="app">
       <aside>
@@ -23,11 +44,11 @@ function App() {
           <div className="input-group">
             <div className="input-block">
               <label htmlFor="latitude">Latitude</label>
-              <input name="latitude" id="latitude" required/>
+              <input type="number" name="latitude" id="latitude" required value={latitude}/>
             </div>
             <div className="input-block">
               <label htmlFor="longitude">Longitude</label>
-              <input name="longitude" id="longitude" required/>
+              <input type="number" name="longitude" id="longitude" required value={longitude}/>
             </div>
           </div>
 
@@ -35,7 +56,55 @@ function App() {
         </form>
       </aside>
       <main>
+			<ul>
+				<li className="dev-item">
+				<header>
+					<img src="https://avatars0.githubusercontent.com/u/40155233?s=460&v=4" alt="Bruno Seiji"/>
+					<div className="user-info">
+						<strong>Bruno Seiji</strong>
+						<span>ReactJS, React Native, NodeJS</span>
+					</div>
+				</header>
+				<p>Desenvolvedor Front-end Em busca de se tornar um mestre ninja do JavaScript</p>
+				<a href="https://github.com/brunoseiji">Acessar perfil no Github</a>
+				</li>
 
+				<li className="dev-item">
+				<header>
+					<img src="https://avatars0.githubusercontent.com/u/40155233?s=460&v=4" alt="Bruno Seiji"/>
+					<div className="user-info">
+						<strong>Bruno Seiji</strong>
+						<span>ReactJS, React Native, NodeJS</span>
+					</div>
+				</header>
+				<p>Desenvolvedor Front-end Em busca de se tornar um mestre ninja do JavaScript</p>
+				<a href="https://github.com/brunoseiji">Acessar perfil no Github</a>
+				</li>
+
+				<li className="dev-item">
+				<header>
+					<img src="https://avatars0.githubusercontent.com/u/40155233?s=460&v=4" alt="Bruno Seiji"/>
+					<div className="user-info">
+						<strong>Bruno Seiji</strong>
+						<span>ReactJS, React Native, NodeJS</span>
+					</div>
+				</header>
+				<p>Desenvolvedor Front-end Em busca de se tornar um mestre ninja do JavaScript</p>
+				<a href="https://github.com/brunoseiji">Acessar perfil no Github</a>
+				</li>
+
+				<li className="dev-item">
+				<header>
+					<img src="https://avatars0.githubusercontent.com/u/40155233?s=460&v=4" alt="Bruno Seiji"/>
+					<div className="user-info">
+						<strong>Bruno Seiji</strong>
+						<span>ReactJS, React Native, NodeJS</span>
+					</div>
+				</header>
+				<p>Desenvolvedor Front-end Em busca de se tornar um mestre ninja do JavaScript</p>
+				<a href="https://github.com/brunoseiji">Acessar perfil no Github</a>
+				</li>
+			</ul>
       </main>
     </div>
   );
